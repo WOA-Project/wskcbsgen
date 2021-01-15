@@ -37,10 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="pkgcomposition">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Windows Kits\10\tools\bin\i386\pkgcomposition.dll</HintPath>
+      <HintPath>\Program Files (x86)\Windows Kits\10\tools\bin\i386\pkgcomposition.dll</HintPath>
     </Reference>
     <Reference Include="pkgtoolbox">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Windows Kits\10\tools\bin\i386\pkgtoolbox.dll</HintPath>
+      <HintPath>\Program Files (x86)\Windows Kits\10\tools\bin\i386\pkgtoolbox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
