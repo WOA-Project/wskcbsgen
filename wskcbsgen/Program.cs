@@ -27,7 +27,7 @@ namespace wskcbsgen
         {
             Environment.SetEnvironmentVariable("SIGN_OEM", "1");
             Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") +
-                @"C:\Program Files (x86)\Windows Kits\10\tools\bin\i386;C:\Program Files (x86)\Windows Kits\10\bin\" + BuildVersion + @"\x64\;");
+                $@"C:\Program Files (x86)\Windows Kits\10\tools\bin\i386;C:\Program Files (x86)\Windows Kits\10\bin\{BuildVersion}\x64\;");
 
             Environment.CurrentDirectory = @"C:\Program Files (x86)\Windows Kits\10\tools\bin\i386";
 
@@ -43,8 +43,8 @@ namespace wskcbsgen
                 HostArch = architecture,
                 Version = new Version(BuildVersion),
 
-                Component = "OneCore." + DeviceName + @".DevicePlatform512",
-                PackageName = "Microsoft-OneCore-" + DeviceName + @"-DevicePlatform512-Package",
+                Component = $"OneCore.{DeviceName}.DevicePlatform512",
+                PackageName = $"Microsoft-OneCore-{DeviceName}-DevicePlatform512-Package",
                 SubComponent = "",
                 PublicKey = "31bf3856ad364e35"
             };
@@ -52,10 +52,10 @@ namespace wskcbsgen
             cbsCabinet.AddFile(FileType.Regular,
                 OEMDevicePlatform,
                 @"\Windows\ImageUpdate\OEMDevicePlatform.xml",
-                "Microsoft-OneCore-" + DeviceName + @"-DevicePlatform512-Package");
+                cbsCabinet.PackageName);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab(Output + @"Microsoft-OneCore-" + DeviceName + @"-DevicePlatform512-Package~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab");
+            cbsCabinet.SaveCab($"{Output}Microsoft-OneCore-{DeviceName}-DevicePlatform512-Package~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
 
             cbsCabinet = new CbsPackage
             {
@@ -69,8 +69,8 @@ namespace wskcbsgen
                 HostArch = architecture,
                 Version = new Version(BuildVersion),
 
-                Component = "OneCore." + DeviceName + @"GPTSpaceDeviceLayout512",
-                PackageName = "Microsoft-OneCore-" + DeviceName + @"GPTSpaceDeviceLayout512-Package",
+                Component = $"OneCore.{DeviceName}GPTSpaceDeviceLayout512",
+                PackageName = $"Microsoft-OneCore-{DeviceName}GPTSpaceDeviceLayout512-Package",
                 SubComponent = "",
                 PublicKey = "31bf3856ad364e35"
             };
@@ -78,10 +78,10 @@ namespace wskcbsgen
             cbsCabinet.AddFile(FileType.Regular,
                 DeviceLayout,
                 @"\Windows\ImageUpdate\DeviceLayout.xml",
-                "Microsoft-OneCore-" + DeviceName + @"GPTSpaceDeviceLayout512-Package");
+                cbsCabinet.PackageName);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab(Output + @"Microsoft-OneCore-" + DeviceName + @"GPTSpaceDeviceLayout512-Package~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab");
+            cbsCabinet.SaveCab($"{Output}Microsoft-OneCore-{DeviceName}GPTSpaceDeviceLayout512-Package~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
 
             cbsCabinet = new CbsPackage
             {
@@ -95,18 +95,21 @@ namespace wskcbsgen
                 HostArch = architecture,
                 Version = new Version(BuildVersion),
 
-                Component = ProductName + ".DEVICELAYOUT_GPT_SPACES_512." + ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV",
-                PackageName = "Microsoft." + ProductName + ".DEVICELAYOUT_GPT_SPACES_512." + ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV.FIP",
+                Component = $"{ProductName}.DEVICELAYOUT_GPT_SPACES_512.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV",
+                PackageName = $"Microsoft.{ProductName}.DEVICELAYOUT_GPT_SPACES_512.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV.FIP",
                 SubComponent = "FIP",
                 PublicKey = "628844477771337a"
             };
 
-            List<IPackageInfo> lst = new List<IPackageInfo>();
-            lst.Add(new CbsPackageInfo(Output + @"Microsoft-OneCore-" + DeviceName + @"GPTSpaceDeviceLayout512-Package~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab"));
-            cbsCabinet.SetCBSFeatureInfo(ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV", "DEVICELAYOUT_GPT_SPACES_512", "Microsoft", lst);
+            List<IPackageInfo> lst = new List<IPackageInfo>
+            {
+                new CbsPackageInfo($@"{Output}Microsoft-OneCore-{DeviceName}GPTSpaceDeviceLayout512-Package~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab")
+            };
+
+            cbsCabinet.SetCBSFeatureInfo($"{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV", "DEVICELAYOUT_GPT_SPACES_512", "Microsoft", lst);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab(Output + @"Microsoft." + ProductName + ".DEVICELAYOUT_GPT_SPACES_512." + ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV.FIP~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab");
+            cbsCabinet.SaveCab($"{Output}Microsoft.{ProductName}.DEVICELAYOUT_GPT_SPACES_512.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV.FIP~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
 
             cbsCabinet = new CbsPackage
             {
@@ -120,23 +123,24 @@ namespace wskcbsgen
                 HostArch = architecture,
                 Version = new Version(BuildVersion),
 
-                Component = ProductName + ".OEMDEVICEPLATFORM_" + DeviceName.ToUpper() + @"DEVICE." + ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV",
-                PackageName = "Microsoft." + ProductName + ".OEMDEVICEPLATFORM_" + DeviceName.ToUpper() + @"DEVICE." + ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV.FIP",
+                Component = $"{ProductName}.OEMDEVICEPLATFORM_{DeviceName.ToUpper()}DEVICE.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV",
+                PackageName = $"Microsoft.{ProductName}.OEMDEVICEPLATFORM_{DeviceName.ToUpper()}DEVICE.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV.FIP",
                 SubComponent = "FIP",
                 PublicKey = "628844477771337a"
             };
 
             lst = new List<IPackageInfo>
             {
-                new CbsPackageInfo(Output + @"Microsoft-OneCore-" + DeviceName + @"-DevicePlatform512-Package~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab")
+                new CbsPackageInfo($@"{Output}Microsoft-OneCore-{DeviceName}-DevicePlatform512-Package~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab")
             };
-            cbsCabinet.SetCBSFeatureInfo(ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV",
-                                         "OEMDEVICEPLATFORM_" + DeviceName.ToUpper() + @"DEVICE",
+
+            cbsCabinet.SetCBSFeatureInfo($"{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV",
+                                         $"OEMDEVICEPLATFORM_{DeviceName.ToUpper()}DEVICE",
                                          "Microsoft",
                                          lst);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab(Output + @"Microsoft." + ProductName + ".OEMDEVICEPLATFORM_" + DeviceName.ToUpper() + @"DEVICE." + ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV.FIP~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab");
+            cbsCabinet.SaveCab($"{Output}Microsoft.{ProductName}.OEMDEVICEPLATFORM_{DeviceName.ToUpper()}DEVICE.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV.FIP~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
 
             cbsCabinet = new CbsPackage
             {
@@ -150,25 +154,21 @@ namespace wskcbsgen
                 HostArch = architecture,
                 Version = new Version(BuildVersion),
 
-                Component = ProductName + "." + DeviceName + @"DeviceFM",
-                PackageName = "Microsoft." + ProductName + "." + DeviceName + @"DeviceFM",
+                Component = $"{ProductName}.{DeviceName}DeviceFM",
+                PackageName = $"Microsoft.{ProductName}.{DeviceName}DeviceFM",
                 SubComponent = "",
                 PublicKey = "628844477771337a"
             };
 
             cbsCabinet.AddFile(FileType.Regular,
                 DeviceFM,
-                @"\Windows\ImageUpdate\FeatureManifest\Microsoft\" + DeviceName + @"DeviceFM.xml", "");
+                $@"\Windows\ImageUpdate\FeatureManifest\Microsoft\{DeviceName}DeviceFM.xml", "");
 
-            List<IPackageInfo> lst6 = new List<IPackageInfo>
-            {
-                //new CbsPackageInfo(Output + @"Microsoft-OneCore-" + DeviceName + @"-DevicePlatform512-Package~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab"),
-                //new CbsPackageInfo(Output + @"Microsoft-OneCore-" + DeviceName + @"GPTSpaceDeviceLayout512-Package~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab")
-            };
-            cbsCabinet.SetCBSFeatureInfo(ProductName.ToUpper() + string.Join("", DeviceName.ToUpper().Take(3)) + "DEV", "BASE", "Microsoft", lst6);
+            List<IPackageInfo> lst6 = new List<IPackageInfo>();
+            cbsCabinet.SetCBSFeatureInfo($"{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV", "BASE", "Microsoft", lst6);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab(Output + @"Microsoft." + ProductName + "." + DeviceName + @"DeviceFM~31bf3856ad364e35~" + architecture.ToString().ToUpper() + @"~~.cab");
+            cbsCabinet.SaveCab($"{Output}Microsoft.{ProductName}.{DeviceName}DeviceFM~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
         }
     }
 }
