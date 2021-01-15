@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Composition.Packaging;
 using Microsoft.Composition.ToolBox;
 using Microsoft.Composition.Packaging.Interfaces;
+using System.IO;
 
 namespace wskcbsgen
 {
@@ -11,25 +12,36 @@ namespace wskcbsgen
     {
         static void Main(string[] args)
         {
-            string DeviceName = "Cityman";
-            string BuildVersion = "10.0.20279.1002";
-            string Output = @"C:\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\BuildCabs\Cityman\";
-            string DeviceFM = @"C:\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\BuildCabs\Cityman\CitymanDeviceFM.xml";
-            string OEMDevicePlatform = @"C:\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\BuildCabs\Cityman\OEMDevicePlatform.xml";
-            string DeviceLayout = @"C:\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\BuildCabs\Cityman\DeviceLayout.xml";
-            var architecture = CpuArch.ARM64;
-            string ProductName = "ModernPC";
+            string Output = @"C:\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\BuildCabs\MMO\";
+            string DeviceFM = @"C:\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\BuildCabs\MMO\CitymanDeviceFM.xml";
+            string OEMDevicePlatform = @"C:\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\BuildCabs\MMO\OEMDevicePlatform.xml";
+            string DeviceLayout = @"C:\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\BuildCabs\MMO\DeviceLayout.xml";
 
-            BuildComponents(DeviceName, BuildVersion, Output, DeviceFM, OEMDevicePlatform, DeviceLayout, architecture, ProductName);
+            BuildComponents("Cityman", "Cityman", "Cityman", "10.0.20279.1002", Output, DeviceFM, OEMDevicePlatform, DeviceLayout, CpuArch.ARM64, "ModernPC");
         }
 
-        public static void BuildComponents(string DeviceName, string BuildVersion, string Output, string DeviceFM, string OEMDevicePlatform, string DeviceLayout, CpuArch architecture, string ProductName)
+        public static void BuildComponents(
+            string DeviceName,
+            string PlatformName,
+            string LayoutName,
+            string BuildVersion, 
+            string OutputPath, 
+            string DeviceFMPath, 
+            string OEMDevicePlatformPath, 
+            string DeviceLayoutPath, 
+            CpuArch OSArchitecture, 
+            string OSProductName)
         {
             Environment.SetEnvironmentVariable("SIGN_OEM", "1");
             Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") +
                 $@"C:\Program Files (x86)\Windows Kits\10\tools\bin\i386;C:\Program Files (x86)\Windows Kits\10\bin\{BuildVersion}\x64\;");
 
             Environment.CurrentDirectory = @"C:\Program Files (x86)\Windows Kits\10\tools\bin\i386";
+
+            string FeatureManifestId = $"{OSProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV";
+
+            string MicrosoftCBSPublicKey1 = "31bf3856ad364e35";
+            string MicrosoftCBSPublicKey2 = "628844477771337a";
 
             var cbsCabinet = new CbsPackage
             {
@@ -40,22 +52,23 @@ namespace wskcbsgen
                 OwnerType = PhoneOwnerType.Microsoft,
                 PhoneReleaseType = PhoneReleaseType.Production,
                 ReleaseType = "Feature Pack",
-                HostArch = architecture,
+                HostArch = OSArchitecture,
                 Version = new Version(BuildVersion),
 
-                Component = $"OneCore.{DeviceName}.DevicePlatform512",
-                PackageName = $"Microsoft-OneCore-{DeviceName}-DevicePlatform512-Package",
+                Component = $"OneCore.{PlatformName}.DevicePlatform",
+                PackageName = $"Microsoft-OneCore-{PlatformName}-DevicePlatform-Package",
                 SubComponent = "",
-                PublicKey = "31bf3856ad364e35"
+                PublicKey = MicrosoftCBSPublicKey1
             };
 
             cbsCabinet.AddFile(FileType.Regular,
-                OEMDevicePlatform,
+                OEMDevicePlatformPath,
                 @"\Windows\ImageUpdate\OEMDevicePlatform.xml",
                 cbsCabinet.PackageName);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab($"{Output}Microsoft-OneCore-{DeviceName}-DevicePlatform512-Package~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
+            string DevicePlatformCabFileName = $"Microsoft-OneCore-{PlatformName}-DevicePlatform-Package~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab";
+            cbsCabinet.SaveCab(Path.Combine(OutputPath, DevicePlatformCabFileName));
 
             cbsCabinet = new CbsPackage
             {
@@ -66,22 +79,23 @@ namespace wskcbsgen
                 OwnerType = PhoneOwnerType.Microsoft,
                 PhoneReleaseType = PhoneReleaseType.Production,
                 ReleaseType = "Feature Pack",
-                HostArch = architecture,
+                HostArch = OSArchitecture,
                 Version = new Version(BuildVersion),
 
-                Component = $"OneCore.{DeviceName}GPTSpaceDeviceLayout512",
-                PackageName = $"Microsoft-OneCore-{DeviceName}GPTSpaceDeviceLayout512-Package",
+                Component = $"OneCore.{LayoutName}.DeviceLayout",
+                PackageName = $"Microsoft-OneCore-{LayoutName}-DeviceLayout-Package",
                 SubComponent = "",
-                PublicKey = "31bf3856ad364e35"
+                PublicKey = MicrosoftCBSPublicKey1
             };
 
             cbsCabinet.AddFile(FileType.Regular,
-                DeviceLayout,
+                DeviceLayoutPath,
                 @"\Windows\ImageUpdate\DeviceLayout.xml",
                 cbsCabinet.PackageName);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab($"{Output}Microsoft-OneCore-{DeviceName}GPTSpaceDeviceLayout512-Package~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
+            string DeviceLayoutCabFileName = $"Microsoft-OneCore-{LayoutName}-DeviceLayout-Package~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab";
+            cbsCabinet.SaveCab(Path.Combine(OutputPath, DeviceLayoutCabFileName));
 
             cbsCabinet = new CbsPackage
             {
@@ -92,24 +106,24 @@ namespace wskcbsgen
                 OwnerType = PhoneOwnerType.Microsoft,
                 PhoneReleaseType = PhoneReleaseType.Production,
                 ReleaseType = "Feature Pack",
-                HostArch = architecture,
+                HostArch = OSArchitecture,
                 Version = new Version(BuildVersion),
 
-                Component = $"{ProductName}.DEVICELAYOUT_GPT_SPACES_512.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV",
-                PackageName = $"Microsoft.{ProductName}.DEVICELAYOUT_GPT_SPACES_512.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV.FIP",
+                Component = $"{OSProductName}.DEVICELAYOUT_{LayoutName.ToUpper()}.{FeatureManifestId}",
+                PackageName = $"Microsoft.{OSProductName}.DEVICELAYOUT_{LayoutName.ToUpper()}.{FeatureManifestId}.FIP",
                 SubComponent = "FIP",
-                PublicKey = "628844477771337a"
+                PublicKey = MicrosoftCBSPublicKey2
             };
 
             List<IPackageInfo> lst = new List<IPackageInfo>
             {
-                new CbsPackageInfo($@"{Output}Microsoft-OneCore-{DeviceName}GPTSpaceDeviceLayout512-Package~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab")
+                new CbsPackageInfo(Path.Combine(OutputPath, DeviceLayoutCabFileName))
             };
 
-            cbsCabinet.SetCBSFeatureInfo($"{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV", "DEVICELAYOUT_GPT_SPACES_512", "Microsoft", lst);
+            cbsCabinet.SetCBSFeatureInfo(FeatureManifestId, $"DEVICELAYOUT_{LayoutName.ToUpper()}", "Microsoft", lst);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab($"{Output}Microsoft.{ProductName}.DEVICELAYOUT_GPT_SPACES_512.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV.FIP~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
+            cbsCabinet.SaveCab(Path.Combine(OutputPath, $"Microsoft.{OSProductName}.DEVICELAYOUT_{LayoutName.ToUpper()}.{FeatureManifestId}.FIP~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab"));
 
             cbsCabinet = new CbsPackage
             {
@@ -120,27 +134,27 @@ namespace wskcbsgen
                 OwnerType = PhoneOwnerType.Microsoft,
                 PhoneReleaseType = PhoneReleaseType.Production,
                 ReleaseType = "Feature Pack",
-                HostArch = architecture,
+                HostArch = OSArchitecture,
                 Version = new Version(BuildVersion),
 
-                Component = $"{ProductName}.OEMDEVICEPLATFORM_{DeviceName.ToUpper()}DEVICE.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV",
-                PackageName = $"Microsoft.{ProductName}.OEMDEVICEPLATFORM_{DeviceName.ToUpper()}DEVICE.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV.FIP",
+                Component = $"{OSProductName}.OEMDEVICEPLATFORM_{PlatformName.ToUpper()}.{FeatureManifestId}",
+                PackageName = $"Microsoft.{OSProductName}.OEMDEVICEPLATFORM_{PlatformName.ToUpper()}.{FeatureManifestId}.FIP",
                 SubComponent = "FIP",
-                PublicKey = "628844477771337a"
+                PublicKey = MicrosoftCBSPublicKey2
             };
 
             lst = new List<IPackageInfo>
             {
-                new CbsPackageInfo($@"{Output}Microsoft-OneCore-{DeviceName}-DevicePlatform512-Package~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab")
+                new CbsPackageInfo(Path.Combine(OutputPath, DevicePlatformCabFileName))
             };
 
-            cbsCabinet.SetCBSFeatureInfo($"{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV",
-                                         $"OEMDEVICEPLATFORM_{DeviceName.ToUpper()}DEVICE",
+            cbsCabinet.SetCBSFeatureInfo(FeatureManifestId,
+                                         $"OEMDEVICEPLATFORM_{PlatformName.ToUpper()}",
                                          "Microsoft",
                                          lst);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab($"{Output}Microsoft.{ProductName}.OEMDEVICEPLATFORM_{DeviceName.ToUpper()}DEVICE.{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV.FIP~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
+            cbsCabinet.SaveCab(Path.Combine(OutputPath, $"Microsoft.{OSProductName}.OEMDEVICEPLATFORM_{PlatformName.ToUpper()}.{FeatureManifestId}.FIP~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab"));
 
             cbsCabinet = new CbsPackage
             {
@@ -151,24 +165,24 @@ namespace wskcbsgen
                 OwnerType = PhoneOwnerType.Microsoft,
                 PhoneReleaseType = PhoneReleaseType.Production,
                 ReleaseType = "Feature Pack",
-                HostArch = architecture,
+                HostArch = OSArchitecture,
                 Version = new Version(BuildVersion),
 
-                Component = $"{ProductName}.{DeviceName}DeviceFM",
-                PackageName = $"Microsoft.{ProductName}.{DeviceName}DeviceFM",
+                Component = $"{OSProductName}.{DeviceName}DeviceFM",
+                PackageName = $"Microsoft.{OSProductName}.{DeviceName}DeviceFM",
                 SubComponent = "",
-                PublicKey = "628844477771337a"
+                PublicKey = MicrosoftCBSPublicKey2
             };
 
             cbsCabinet.AddFile(FileType.Regular,
-                DeviceFM,
+                DeviceFMPath,
                 $@"\Windows\ImageUpdate\FeatureManifest\Microsoft\{DeviceName}DeviceFM.xml", "");
 
             List<IPackageInfo> lst6 = new List<IPackageInfo>();
-            cbsCabinet.SetCBSFeatureInfo($"{ProductName.ToUpper()}{string.Join("", DeviceName.ToUpper().Take(3))}DEV", "BASE", "Microsoft", lst6);
+            cbsCabinet.SetCBSFeatureInfo(FeatureManifestId, "BASE", "Microsoft", lst6);
 
             cbsCabinet.Validate();
-            cbsCabinet.SaveCab($"{Output}Microsoft.{ProductName}.{DeviceName}DeviceFM~31bf3856ad364e35~{architecture.ToString().ToUpper()}~~.cab");
+            cbsCabinet.SaveCab(Path.Combine(OutputPath, $"Microsoft.{OSProductName}.{DeviceName}DeviceFM~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab"));
         }
     }
 }
