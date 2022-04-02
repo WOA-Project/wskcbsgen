@@ -38,7 +38,7 @@ namespace wskcbsgen
             string DeviceLayout       = $@"{ProjectRoot}\BuildCabs.{PhoneName}\DeviceLayout.xml";
             string DeviceLayoutLegacy = $@"{ProjectRoot}\BuildCabs.{PhoneName}\DeviceLayoutNonPool.xml";
 
-            BuildComponents($"{PhoneName}", BuildVersion, OEMOutputDir, DeviceFM, OEMDevicePlatform, DeviceLayout, DeviceLayoutLegacy, CpuArch.ARM64, "ModernPC", new List<IPackageInfo>());
+            BuildComponents($"{PhoneName}", BuildVersion, OEMOutputDir, DeviceFM, OEMDevicePlatform, DeviceLayout, null, CpuArch.ARM64, "ModernPC", new List<IPackageInfo>());
         }
 
         public static void BuildOther()
@@ -209,62 +209,65 @@ namespace wskcbsgen
             //cbsCabinet.SaveCab(Path.Combine(OutputPath, $"Microsoft.{OSProductName}.DEVICELAYOUT_{DeviceName.ToUpper()}_SPACES.{FeatureManifestId}.FIP~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab"));
             cbsCabinet.SaveCab(Path.Combine(OutputPath, $"Microsoft.{OSProductName}.DEVICELAYOUT_{DeviceName.ToUpper()}.{FeatureManifestId}.FIP~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab"));
 
-            /*/////////////////
+            /////////////////
 
-            cbsCabinet = new CbsPackage
+            if (!string.IsNullOrEmpty(DeviceLayoutLegacyPath))
             {
-                BuildType = BuildType.Release,
-                BinaryPartition = false,
-                Owner = "Microsoft",
-                Partition = "MAINOS",
-                OwnerType = PhoneOwnerType.OEM,
-                PhoneReleaseType = PhoneReleaseType.Production,
-                ReleaseType = "Feature Pack",
-                HostArch = OSArchitecture,
-                Version = new Version(BuildVersion),
+                cbsCabinet = new CbsPackage
+                {
+                    BuildType = BuildType.Release,
+                    BinaryPartition = false,
+                    Owner = "Microsoft",
+                    Partition = "MAINOS",
+                    OwnerType = PhoneOwnerType.OEM,
+                    PhoneReleaseType = PhoneReleaseType.Production,
+                    ReleaseType = "Feature Pack",
+                    HostArch = OSArchitecture,
+                    Version = new Version(BuildVersion),
 
-                Component = $"OneCore.{DeviceName}.LegacyDeviceLayout",
-                PackageName = $"Microsoft-OneCore-{DeviceName}-LegacyDeviceLayout-Package",
-                SubComponent = "",
-                PublicKey = MicrosoftCBSPublicKey1
-            };
+                    Component = $"OneCore.{DeviceName}.LegacyDeviceLayout",
+                    PackageName = $"Microsoft-OneCore-{DeviceName}-LegacyDeviceLayout-Package",
+                    SubComponent = "",
+                    PublicKey = MicrosoftCBSPublicKey1
+                };
 
-            cbsCabinet.AddFile(FileType.Regular,
-                DeviceLayoutLegacyPath,
-                @"\Windows\ImageUpdate\DeviceLayout.xml",
-                cbsCabinet.PackageName);
+                cbsCabinet.AddFile(FileType.Regular,
+                        DeviceLayoutLegacyPath,
+                        @"\Windows\ImageUpdate\DeviceLayout.xml",
+                        cbsCabinet.PackageName);
 
-            cbsCabinet.Validate();
-            DeviceLayoutCabFileName = $"Microsoft-OneCore-{DeviceName}-LegacyDeviceLayout-Package~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab";
-            cbsCabinet.SaveCab(Path.Combine(OutputPath, DeviceLayoutCabFileName));
+                cbsCabinet.Validate();
+                DeviceLayoutCabFileName = $"Microsoft-OneCore-{DeviceName}-LegacyDeviceLayout-Package~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab";
+                cbsCabinet.SaveCab(Path.Combine(OutputPath, DeviceLayoutCabFileName));
 
-            cbsCabinet = new CbsPackage
-            {
-                BuildType = BuildType.Release,
-                BinaryPartition = false,
-                Owner = "Microsoft",
-                Partition = "MAINOS",
-                OwnerType = PhoneOwnerType.OEM,
-                PhoneReleaseType = PhoneReleaseType.Production,
-                ReleaseType = "Feature Pack",
-                HostArch = OSArchitecture,
-                Version = new Version(BuildVersion),
+                cbsCabinet = new CbsPackage
+                {
+                    BuildType = BuildType.Release,
+                    BinaryPartition = false,
+                    Owner = "Microsoft",
+                    Partition = "MAINOS",
+                    OwnerType = PhoneOwnerType.OEM,
+                    PhoneReleaseType = PhoneReleaseType.Production,
+                    ReleaseType = "Feature Pack",
+                    HostArch = OSArchitecture,
+                    Version = new Version(BuildVersion),
 
-                Component = $"{OSProductName}.DEVICELAYOUT_{DeviceName.ToUpper()}_LEGACY.{FeatureManifestId}",
-                PackageName = $"Microsoft.{OSProductName}.DEVICELAYOUT_{DeviceName.ToUpper()}_LEGACY.{FeatureManifestId}.FIP",
-                SubComponent = "FIP",
-                PublicKey = OEMCBSPublicKey2
-            };
+                    Component = $"{OSProductName}.DEVICELAYOUT_{DeviceName.ToUpper()}_LEGACY.{FeatureManifestId}",
+                    PackageName = $"Microsoft.{OSProductName}.DEVICELAYOUT_{DeviceName.ToUpper()}_LEGACY.{FeatureManifestId}.FIP",
+                    SubComponent = "FIP",
+                    PublicKey = OEMCBSPublicKey2
+                };
 
-            lst = new List<IPackageInfo>
-            {
-                new CbsPackageInfo(Path.Combine(OutputPath, DeviceLayoutCabFileName))
-            };
+                lst = new List<IPackageInfo>
+                {
+                    new CbsPackageInfo(Path.Combine(OutputPath, DeviceLayoutCabFileName))
+                };
 
-            cbsCabinet.SetCBSFeatureInfo(FeatureManifestId, $"DEVICELAYOUT_{DeviceName.ToUpper()}_LEGACY", "OEM", lst);
+                cbsCabinet.SetCBSFeatureInfo(FeatureManifestId, $"DEVICELAYOUT_{DeviceName.ToUpper()}_LEGACY", "OEM", lst);
 
-            cbsCabinet.Validate();
-            cbsCabinet.SaveCab(Path.Combine(OutputPath, $"Microsoft.{OSProductName}.DEVICELAYOUT_{DeviceName.ToUpper()}_LEGACY.{FeatureManifestId}.FIP~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab"));*/
+                cbsCabinet.Validate();
+                cbsCabinet.SaveCab(Path.Combine(OutputPath, $"Microsoft.{OSProductName}.DEVICELAYOUT_{DeviceName.ToUpper()}_LEGACY.{FeatureManifestId}.FIP~{MicrosoftCBSPublicKey1}~{OSArchitecture.ToString().ToUpper()}~~.cab")); */
+            }
 
             /////////////////
 
