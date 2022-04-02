@@ -63,7 +63,7 @@ namespace wskcbsgen
 
             cbsCabinet.AddFile(FileType.Manifest,
                 @"E:\Users\Gus\Documents\amd64_microsoft-onecore-s..-xro-bindflt-config_31bf3856ad364e35_10.0.20279.1002_none_233ecea4978a65b8.manifest",
-                "\\windows\\WinSxS\\arm64_microsoft-onecore-s..-xro-bindflt-config_31bf3856ad364e35_10.0.20279.1002_none_233ecea4978a65b8.manifest",
+                "\\windows\\WinSxS\\amd64_microsoft-onecore-s..-xro-bindflt-config_31bf3856ad364e35_10.0.20279.1002_none_233ecea4978a65b8.manifest",
                 cbsCabinet.PackageName);
 
             cbsCabinet.Validate();
