@@ -43,7 +43,7 @@ namespace wskcbsgen
 
         public static void BuildOther()
         {
-            var cbsCabinet = new CbsPackage
+            CbsPackage cbsCabinet = new CbsPackage
             {
                 BuildType = BuildType.Release,
                 BinaryPartition = false,
@@ -87,7 +87,7 @@ namespace wskcbsgen
 
             ////////////////////////
 
-            var cbsCabinet = new CbsPackage
+            CbsPackage cbsCabinet = new CbsPackage
             {
                 BuildType = BuildType.Release,
                 BinaryPartition = false,
@@ -302,11 +302,11 @@ namespace wskcbsgen
         {
             List<CbsPackageInfo> packages = new List<CbsPackageInfo>();
 
-            foreach (var partpath in Directory.EnumerateDirectories(nonBinDirectory))
+            foreach (string partpath in Directory.EnumerateDirectories(nonBinDirectory))
             {
                 string partitionname = partpath.Split('\\').Last();
 
-                var cbsCabinet = new CbsPackage
+                CbsPackage cbsCabinet = new CbsPackage
                 {
                     BuildType = BuildType.Release,
                     BinaryPartition = false,
@@ -324,7 +324,7 @@ namespace wskcbsgen
                     PublicKey = MicrosoftCBSPublicKey1
                 };
 
-                foreach (var file in Directory.EnumerateFiles(partpath, "*.*", SearchOption.AllDirectories))
+                foreach (string file in Directory.EnumerateFiles(partpath, "*.*", SearchOption.AllDirectories))
                 {
                     Console.WriteLine(file);
                     cbsCabinet.AddFile(FileType.Regular, file, file.Replace(partpath, ""), cbsCabinet.PackageName);
@@ -344,11 +344,11 @@ namespace wskcbsgen
         {
             List<CbsPackageInfo> packages = new List<CbsPackageInfo>();
 
-            foreach (var partpath in Directory.EnumerateFiles(binDirectory, "*.bin"))
+            foreach (string partpath in Directory.EnumerateFiles(binDirectory, "*.bin"))
             {
                 string partitionname = Path.GetFileNameWithoutExtension(partpath);
 
-                var cbsCabinet = new CbsPackage
+                CbsPackage cbsCabinet = new CbsPackage
                 {
                     BuildType = BuildType.Release,
                     BinaryPartition = true,
