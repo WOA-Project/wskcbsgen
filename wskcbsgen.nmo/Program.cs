@@ -245,7 +245,7 @@ namespace WSKCBSGen.NMO
 
             //TODO: add driver stuff
 
-            //lst4.Add(new CbsPackageInfo(@$"{OutputPath}\{cab3.PackageName}.cab"));
+            //lst4.Add(new CbsPackageInfo(@$"{OutputPath}\{ImageCustomizationCbsCabinet.PackageName}.cab"));
             DeviceFMCbsCabinet.SetCBSFeatureInfo($"{FeatureManifestId}FM", "BASE", "Microsoft", lst4);
 
             DeviceFMCbsCabinet.Validate();
