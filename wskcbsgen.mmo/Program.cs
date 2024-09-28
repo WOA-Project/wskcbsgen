@@ -8,7 +8,7 @@ namespace WSKCBSGen.MMO
     {
         static readonly string ProjectRoot = @"C:\Users\gus33\Documents\GitHub\WSKCBSGen\Project";
 
-        static readonly string PhoneName              = "Talkman";
+        static readonly string PhoneName              = "Cityman";
         static readonly string BuildVersion           = "10.0.20279.1002";
         static readonly string WSKBuildVersion        = "10.0.22000.0";
         static readonly string WSKLocation            = $@"{Environment.GetEnvironmentVariable("USERPROFILE")}\Documents\GitHub\WSKCBSGen\WSK";
@@ -19,6 +19,8 @@ namespace WSKCBSGen.MMO
 
         static readonly string MicrosoftCBSPublicKey1 = "31bf3856ad364e35";
         static readonly string OEMCBSPublicKey2       = "628844477771337a";
+
+        static readonly string SupportedDeviceOrientationCabFilePath = $@"H:\Main Data\10.0.20279.1002.fe_release_10x.201214-1532_arm64fre_26ce5ebdeaad\Retail\ARM64\fre\Microsoft-Composable-ModernUX-SystemSupportedOrientations-All-Package~31bf3856ad364e35~ARM64~~.cab";
 
         static void Main(string[] _)
         {
@@ -272,7 +274,7 @@ namespace WSKCBSGen.MMO
                     DeviceFMPath,
                     $@"\Windows\ImageUpdate\FeatureManifest\OEM\{DeviceName}DeviceFM.xml", "");
 
-                DeviceFMCbsCabinet.SetCBSFeatureInfo(FeatureManifestId, "BASE", "OEM", SupplementalPackages.Union([new CbsPackageInfo($@"{ProjectRoot}\Retail\ARM64\fre\Microsoft-Composable-ModernUX-SystemSupportedOrientations-All-Package~31bf3856ad364e35~ARM64~~.cab")]).ToList());
+                DeviceFMCbsCabinet.SetCBSFeatureInfo(FeatureManifestId, "BASE", "OEM", SupplementalPackages.Union([new CbsPackageInfo(SupportedDeviceOrientationCabFilePath)]).ToList());
                 DeviceFMCbsCabinet.Validate();
                 DeviceFMCbsCabinet.SaveCab(Path.Combine(OutputPath, DeviceFMCabFileName));
             }
