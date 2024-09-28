@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 WSK/
+!Project/BuildCabs.Cityman/bin
+!Project/BuildCabs.Talkman/bin
