@@ -21,9 +21,4 @@
       <HintPath>..\WSK\tools\bin\i386\pkgtoolbox.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <None Update="sign.cmd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 </Project>

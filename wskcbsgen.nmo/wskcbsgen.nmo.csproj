@@ -7,7 +7,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AssemblyTitle>WSKCBSGen.MMO</AssemblyTitle>
+    <AssemblyTitle>WSKCBSGen.NMO</AssemblyTitle>
     <Product>WSKCBSGen.MMO</Product>
     <Copyright>Copyright © Gustave Monce 2021-2024</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>

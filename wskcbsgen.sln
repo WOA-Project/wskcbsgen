@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wskcbsgen", "wskcbsgen\wskc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wskcbsgen.mmo", "wskcbsgen.mmo\wskcbsgen.mmo.csproj", "{0F231032-8A84-4930-8D65-4ECB8CDFA4BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wskcbsgen.nmo", "wskcbsgen.nmo\wskcbsgen.nmo.csproj", "{11598DDC-6940-41BF-A0F9-47DD922185EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -20,6 +22,10 @@ Global
 		{0F231032-8A84-4930-8D65-4ECB8CDFA4BF}.Debug|x86.Build.0 = Debug|x86
 		{0F231032-8A84-4930-8D65-4ECB8CDFA4BF}.Release|x86.ActiveCfg = Release|x86
 		{0F231032-8A84-4930-8D65-4ECB8CDFA4BF}.Release|x86.Build.0 = Release|x86
+		{11598DDC-6940-41BF-A0F9-47DD922185EF}.Debug|x86.ActiveCfg = Debug|x86
+		{11598DDC-6940-41BF-A0F9-47DD922185EF}.Debug|x86.Build.0 = Debug|x86
+		{11598DDC-6940-41BF-A0F9-47DD922185EF}.Release|x86.ActiveCfg = Release|x86
+		{11598DDC-6940-41BF-A0F9-47DD922185EF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

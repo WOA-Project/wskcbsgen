@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OEMDevicePlatform xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+    <MinSectorCount>25165824</MinSectorCount>
+    <AdditionalMainOSFreeSectorsRequest>0</AdditionalMainOSFreeSectorsRequest>
+    <DevicePlatformID>Nokia.MSM8974.P6180</DevicePlatformID>
+    <MainOSRTCDataReservedSectors>0</MainOSRTCDataReservedSectors>
+</OEMDevicePlatform>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Revision="1" SchemaVersion="1.2" ReleaseType="Production" OwnerType="Microsoft" ID="MARTRETFM" BuildInfo="rs_onecore_dep_uxp_dev.17686.1003.180606-1600" BuildID="1d3b7d42-5f23-ef5d-6033-85956ec24153" OwnerName="Microsoft" OSVersion="10.0.17686.1003" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <BasePackages>
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-CoreSysCRT120-Package.cab" ID="Microsoft-OneCore-CoreSysCRT120-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-Andromeda-OneScreen-Package.cab" ID="Microsoft-Andromeda-OneScreen-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Qualcomm-DebuggerTransport-Network-Package.cab" ID="Microsoft-OneCore-Qualcomm-DebuggerTransport-Network-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Cellcore-RIL-TestInfra-Package.cab" Language="*" ID="Microsoft-OneCore-Cellcore-RIL-TestInfra-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Test-Tne-Package.cab" Language="*" ID="Microsoft-OneCore-Test-Tne-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Cellcore-FakeRcs-Package.cab" Language="*" ID="Microsoft-OneCore-Cellcore-FakeRcs-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft.AndromedaOS.MartiniRetailDeviceFM.cab" FeatureIdentifierPackage="true" ID="Microsoft.AndromedaOS.MartiniRetailDeviceFM" />
+  </BasePackages>
+</FeatureManifest>

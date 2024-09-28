@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Revision="1" SchemaVersion="1.2" ReleaseType="Production" OwnerType="Microsoft" ID="MARTFM" BuildInfo="rs_onecore_dep_uxp_dev.17686.1003.180606-1600" BuildID="1d3b7d42-5f23-ef5d-6033-85956ec24153" OwnerName="Microsoft" OSVersion="10.0.17686.1003" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+  <BasePackages>
+    <!--<PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-Andromeda-Martini-Boot-Logo1-Package.cab" ID="Microsoft-Andromeda-Martini-Boot-Logo1-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-CRT-Package.cab" ID="Microsoft-OneCore-Martini-CRT-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-PhoneInfoStub-Package.cab" ID="Microsoft-OneCore-Martini-PhoneInfoStub-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-Inking-ACPI-Package.cab" ID="Microsoft-OneCore-Martini-Inking-ACPI-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-Inking-KMDFAD7146-Package.cab" ID="Microsoft-OneCore-Martini-Inking-KMDFAD7146-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-Inking-ProxyKMDF-Package.cab" ID="Microsoft-OneCore-Martini-Inking-ProxyKMDF-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-Inking-QC8994-qchwnhaptics-Package.cab" ID="Microsoft-OneCore-Martini-Inking-QC8994-qchwnhaptics-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-Inking-TouchPowerKMDFGeneric-Package.cab" ID="Microsoft-OneCore-Martini-Inking-TouchPowerKMDFGeneric-Package" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-Inking-TouchSynaptics-Package.cab" ID="Microsoft-OneCore-Martini-Inking-TouchSynaptics-Package" />-->
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft.AndromedaOS.MartiniDeviceFM.cab" FeatureIdentifierPackage="true" ID="Microsoft.AndromedaOS.MartiniDeviceFM" />
+  </BasePackages>
+  <Features>
+    <Microsoft />
+    <MSConditionalFeatures>
+      <ConditionalFeature UpdateAction="Add" FeatureID="DEVICELAYOUT_MARTINI_SELFHOST" FMID="MARTFM">
+        <Condition Type="Feature" Name="SOC_MARTINI_SELFHOST" FMID="MARTFM" />
+      </ConditionalFeature>
+      <ConditionalFeature UpdateAction="Add" FeatureID="OEMDEVICEPLATFORM_MARTINI" FMID="MARTFM">
+        <Condition Type="Feature" Name="DEVICE_MARTINI" FMID="MARTFM" />
+      </ConditionalFeature>
+    </MSConditionalFeatures>
+  </Features>
+  <OEMDevicePlatformPackages>
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-OemDevicePlatform-Package.cab" FeatureIdentifierPackage="true" ID="Microsoft-OneCore-Martini-OemDevicePlatform-Package" Device="Martini" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft.AndromedaOS.OEMDEVICEPLATFORM_MARTINI.MARTFM.FIP.cab" ID="Microsoft.AndromedaOS.OEMDEVICEPLATFORM_MARTINI.MARTFM.FIP" Device="Martini" />
+  </OEMDevicePlatformPackages>
+  <DeviceLayoutPackages>
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft-OneCore-Martini-DeviceLayout-Package.cab" FeatureIdentifierPackage="true" ID="Microsoft-OneCore-Martini-DeviceLayout-Package" SOC="Martini_selfhost" />
+    <PackageFile Path="$(mspackageroot)\Retail\$(cputype)\$(buildtype)" Name="Microsoft.AndromedaOS.DEVICELAYOUT_MARTINI_SELFHOST.MARTFM.FIP.cab" ID="Microsoft.AndromedaOS.DEVICELAYOUT_MARTINI_SELFHOST.MARTFM.FIP" SOC="Martini_selfhost" />
+  </DeviceLayoutPackages>
+</FeatureManifest>
