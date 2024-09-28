@@ -35,7 +35,7 @@ namespace WSKCBSGen.MMO
             string DeviceLayout       = $@"{ProjectRoot}\BuildCabs.{PhoneName}\DeviceLayout.xml";
             string DeviceLayoutLegacy = $@"{ProjectRoot}\BuildCabs.{PhoneName}\DeviceLayoutNonPool.xml";
 
-            BuildComponents($"{PhoneName}", BuildVersion, Output, DeviceFM, OEMDevicePlatform, DeviceLayout, DeviceLayoutLegacy, CpuArch.ARM64, "ModernPC", binPkgs.Union(nonBinPkgs));
+            BuildComponents(PhoneName, BuildVersion, Output, DeviceFM, OEMDevicePlatform, DeviceLayout, DeviceLayoutLegacy, CpuArch.ARM64, "ModernPC", binPkgs.Union(nonBinPkgs));
         }
 
         public static void BuildComponents(
