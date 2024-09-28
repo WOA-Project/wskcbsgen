@@ -363,5 +363,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 WSK/
+
 !Project/BuildCabs.Cityman/bin
 !Project/BuildCabs.Talkman/bin
+!Project/BuildCabs.Cityman/nonbin/ARM_EFIESP/EFI/Microsoft/BOOT/bcd.LOG
+!Project/BuildCabs.Talkman/nonbin/ARM_EFIESP/EFI/Microsoft/BOOT/bcd.LOG
