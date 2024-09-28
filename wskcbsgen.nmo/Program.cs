@@ -68,7 +68,7 @@ namespace WSKCBSGen.NMO
                 PublicKey = MicrosoftCBSPublicKey1
             };
 
-            DeviceLayoutCbsCabinet.AddFile(FileType.Regular, DeviceLayoutPath, "\\Windows\\ImageUpdate\\DeviceLayout.xml", $"Microsoft-OneCore-{DeviceName}-DeviceLayout-Package");
+            DeviceLayoutCbsCabinet.AddFile(FileType.Regular, DeviceLayoutPath, "$(runtime.bootdrive)\\Windows\\ImageUpdate\\DeviceLayout.xml", $"Microsoft-OneCore-{DeviceName}-DeviceLayout-Package");
 
             DeviceLayoutCbsCabinet.Validate();
             DeviceLayoutCbsCabinet.SaveCab(@$"{OutputPath}\{DeviceLayoutCbsCabinet.PackageName}.cab");
@@ -93,7 +93,7 @@ namespace WSKCBSGen.NMO
                 PublicKey = MicrosoftCBSPublicKey1
             };
 
-            DevicePlatformCbsCabinet.AddFile(FileType.Regular, OEMDevicePlatformPath, @"\Windows\ImageUpdate\OEMDevicePlatform.xml", $"Microsoft-OneCore-{DeviceName}-OemDevicePlatform-Package");
+            DevicePlatformCbsCabinet.AddFile(FileType.Regular, OEMDevicePlatformPath, @"$(runtime.bootdrive)\Windows\ImageUpdate\OEMDevicePlatform.xml", $"Microsoft-OneCore-{DeviceName}-OemDevicePlatform-Package");
 
             DevicePlatformCbsCabinet.Validate();
             DevicePlatformCbsCabinet.SaveCab(@$"{OutputPath}\{DevicePlatformCbsCabinet.PackageName}.cab");
@@ -205,7 +205,7 @@ namespace WSKCBSGen.NMO
                 PublicKey = OEMCBSPublicKey2
             };
 
-            ProductDeviceFMCbsCabinet.AddFile(FileType.Regular, OSProductDeviceFMPath, @$"\Windows\ImageUpdate\FeatureManifest\Microsoft\Andromeda{DeviceName}FM.xml", "");
+            ProductDeviceFMCbsCabinet.AddFile(FileType.Regular, OSProductDeviceFMPath, @$"$(runtime.systemroot)\ImageUpdate\FeatureManifest\Microsoft\Andromeda{DeviceName}FM.xml", "");
 
             List<IPackageInfo> lst3 =
             [
@@ -239,7 +239,7 @@ namespace WSKCBSGen.NMO
                 PublicKey = OEMCBSPublicKey2
             };
 
-            DeviceFMCbsCabinet.AddFile(FileType.Regular, DeviceFMPath, @$"\Windows\ImageUpdate\FeatureManifest\Microsoft\{DeviceName}DeviceFM.xml", "");
+            DeviceFMCbsCabinet.AddFile(FileType.Regular, DeviceFMPath, @$"$(runtime.systemroot)\ImageUpdate\FeatureManifest\Microsoft\{DeviceName}DeviceFM.xml", "");
 
             List<IPackageInfo> lst4 = [];
 
@@ -272,7 +272,7 @@ namespace WSKCBSGen.NMO
                 PublicKey = OEMCBSPublicKey2
             };
 
-            NonTestDeviceFMCbsCabinet.AddFile(FileType.Regular, NonTestDeviceFMPath, @$"\Windows\ImageUpdate\FeatureManifest\Microsoft\{DeviceName}NonTestDeviceFM.xml", "");
+            NonTestDeviceFMCbsCabinet.AddFile(FileType.Regular, NonTestDeviceFMPath, @$"$(runtime.systemroot)\ImageUpdate\FeatureManifest\Microsoft\{DeviceName}NonTestDeviceFM.xml", "");
 
             List<IPackageInfo> lst5 = [];
             NonTestDeviceFMCbsCabinet.SetCBSFeatureInfo($"{FeatureManifestId}NTFM", "BASE", "Microsoft", lst5);
@@ -300,7 +300,7 @@ namespace WSKCBSGen.NMO
                 PublicKey = OEMCBSPublicKey2
             };
 
-            RetailDeviceCbsCabinet.AddFile(FileType.Regular, RetailDeviceFMPath, @$"\Windows\ImageUpdate\FeatureManifest\Microsoft\{DeviceName}RetailDeviceFM.xml", "");
+            RetailDeviceCbsCabinet.AddFile(FileType.Regular, RetailDeviceFMPath, @$"$(runtime.systemroot)\ImageUpdate\FeatureManifest\Microsoft\{DeviceName}RetailDeviceFM.xml", "");
 
             List<IPackageInfo> lst6 =
             [
