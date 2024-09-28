@@ -1,23 +1,23 @@
 ﻿using Microsoft.Composition.Packaging;
 using Microsoft.Composition.ToolBox;
 
-namespace wskcbsgen
+namespace WSKCBSGen
 {
     class Program
     {
-        static readonly string ProjectRoot            = @"C:\Users\gus33\Documents\GitHub\wskcbsgen\Project";
+        static readonly string ProjectRoot            = @"C:\Users\gus33\Documents\GitHub\WSKCBSGen\Project";
 
         static readonly string PhoneName              = "Andromeda888";
         static readonly string BuildVersion           = "10.0.20279.1002";
         static readonly string WSKBuildVersion        = "10.0.22000.0";
-        static readonly string WSKLocation            = $@"{Environment.GetEnvironmentVariable("USERPROFILE")}\Documents\GitHub\wskcbsgen\WSK";
+        static readonly string WSKLocation            = $@"{Environment.GetEnvironmentVariable("USERPROFILE")}\Documents\GitHub\WSKCBSGen\WSK";
 
         static readonly string OEMOutputDir           = $@"{ProjectRoot}\Microsoft\{PhoneName}\ARM64\fre";
 
         static readonly string MicrosoftCBSPublicKey1 = "31bf3856ad364e35";
         static readonly string OEMCBSPublicKey2       = "628844477771337a";
 
-        static void Main(string[] args)
+        static void Main(string[] _)
         {
             Environment.SetEnvironmentVariable("SIGN_OEM", "1");
             Environment.SetEnvironmentVariable("PATH", $@"{Environment.GetEnvironmentVariable("PATH")}{WSKLocation}\bin\{WSKBuildVersion}\x64\;");

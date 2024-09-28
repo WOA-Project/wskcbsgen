@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <Platforms>x86</Platforms>
+	<ImplicitUsings>true</ImplicitUsings>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyTitle>WSKCBSGen.MMO</AssemblyTitle>
+    <Product>WSKCBSGen.MMO</Product>
+    <Copyright>Copyright © Gustave Monce 2021-2024</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PkgComposition">
+      <HintPath>..\WSK\tools\bin\i386\pkgcomposition.dll</HintPath>
+    </Reference>
+    <Reference Include="PkgToolBox">
+      <HintPath>..\WSK\tools\bin\i386\pkgtoolbox.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="sign.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
