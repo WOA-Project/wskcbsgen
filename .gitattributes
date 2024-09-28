@@ -61,3 +61,6 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+# Treat everything as binary, as cat files require binary identity for signatures to match
+Project/* -text
