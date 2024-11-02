@@ -7,7 +7,7 @@
                 <Store>
                     <Id>{619b6838-1dca-4904-83ad-d5d0bea0aa4a}</Id>
                     <StoreType>EFIESPDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>30119936</SizeInSectors>
                     <Partitions>
                         <!-- EFI System Partition -->
                         <Partition>
@@ -22,7 +22,7 @@
                 <Store>
                     <Id>{AE420040-13DD-41F2-AE7F-0DC35854C8D7}</Id>
                     <StoreType>MainOSDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>30119936</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>MainOS</Name>
@@ -41,7 +41,7 @@
                 <Store>
                     <Id>{B59E0F00-C531-42AE-9223-7B1DF438A46C}</Id>
                     <StoreType>BSPDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>30119936</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>BSP</Name>
@@ -58,7 +58,7 @@
                 <Store>
                     <Id>{6ee30957-92a8-49c4-b02f-6eacecdc90d4}</Id>
                     <StoreType>PreInstalledDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>30119936</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>PreInstalled</Name>
@@ -74,7 +74,7 @@
                 <Store>
                     <Id>{913bbeb3-2331-43d7-a53a-8d6e1eaf5f4e}</Id>
                     <StoreType>OSDataDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>30119936</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>OSData</Name>
@@ -90,14 +90,14 @@
                 <Store>
                     <Id>{67fc64f6-ec25-4071-9b1b-7e6eb9bcc9ef}</Id>
                     <StoreType>DataDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>30119936</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>Data</Name>
                             <Type>{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}</Type>
-                            <TotalSectors>10485600</TotalSectors>
+                            <TotalSectors>5242880</TotalSectors>
                             <ByteAlignment>0x100000</ByteAlignment>
-                            <ClusterSize>0x1000</ClusterSize>
+                            <ClusterSize>0x4000</ClusterSize>
                             <FileSystem>NTFS</FileSystem>
                             <UseAllSpace>true</UseAllSpace>
                         </Partition>
@@ -127,7 +127,7 @@
             <Id>{5a585bae-900b-41b5-b736-a4cecffc34b4}</Id>
             <StoreType>Default</StoreType>
             <DevicePath>VenHw(860845C1-BE09-4355-8BC1-30D64FF8E63A)</DevicePath>
-            <SizeInSectors>27276288</SizeInSectors>
+            <SizeInSectors>30119936</SizeInSectors>
             <Partitions>
                 <Partition>
                     <Name>ssd</Name>
@@ -146,9 +146,17 @@
                     <SingleSectorAlignment>true</SingleSectorAlignment>
                 </Partition>
                 <Partition>
-                    <Name>metadata</Name>
-                    <TotalSectors>4096</TotalSectors>
-                    <Type>{988A98C9-2910-4123-AAEC-1CF6B1BC28F9}</Type>
+                    <Name>misc</Name>
+                    <TotalSectors>256</TotalSectors>
+                    <Type>{82ACC91F-357C-4A68-9C8F-689E1B1A23A1}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                </Partition>
+                <Partition>
+                    <Name>keystore</Name>
+                    <TotalSectors>128</TotalSectors>
+                    <Type>{DE7D4029-0F5B-41C8-AE7E-F6C023A02B33}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
                     <SingleSectorAlignment>true</SingleSectorAlignment>
@@ -162,9 +170,49 @@
                     <SingleSectorAlignment>true</SingleSectorAlignment>
                 </Partition>
                 <Partition>
-                    <Name>misc</Name>
-                    <TotalSectors>256</TotalSectors>
-                    <Type>{82ACC91F-357C-4A68-9C8F-689E1B1A23A1}</Type>
+                    <Name>system_a</Name>
+                    <TotalSectors>786432</TotalSectors>
+                    <Type>{97D7B011-54DA-4835-B3C4-917AD6E73D74}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                </Partition>
+                <Partition>
+                    <Name>system_b</Name>
+                    <TotalSectors>786432</TotalSectors>
+                    <Type>{77036CD4-03D5-42BB-8ED1-37E5A88BAA34}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                </Partition>
+                <Partition>
+                    <Name>vm-system_a</Name>
+                    <TotalSectors>32768</TotalSectors>
+                    <Type>{C5F681CC-9742-4641-BE4E-976EEB638EEE}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                </Partition>
+                <Partition>
+                    <Name>vm-system_b</Name>
+                    <TotalSectors>32768</TotalSectors>
+                    <Type>{77036CD4-03D5-42BB-8ED1-37E5A88BAA34}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                </Partition>
+                <Partition>
+                    <Name>metadata</Name>
+                    <TotalSectors>4096</TotalSectors>
+                    <Type>{988A98C9-2910-4123-AAEC-1CF6B1BC28F9}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                </Partition>
+                <Partition>
+                    <Name>rawdump</Name>
+                    <TotalSectors>32768</TotalSectors>
+                    <Type>{66C9B323-F7FC-48B6-BF96-6F32E335A428}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
                     <SingleSectorAlignment>true</SingleSectorAlignment>

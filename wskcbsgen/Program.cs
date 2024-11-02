@@ -7,7 +7,7 @@ namespace WSKCBSGen
     {
         static readonly string ProjectRoot            = @"C:\Users\gus33\Documents\GitHub\WSKCBSGen\Project";
 
-        static readonly string PhoneName              = "Andromeda888";
+        static readonly string PhoneName              = "Andromeda855";
         static readonly string BuildVersion           = "10.0.20279.1002";
         static readonly string WSKBuildVersion        = "10.0.22000.0";
         static readonly string WSKLocation            = $@"{Environment.GetEnvironmentVariable("USERPROFILE")}\Documents\GitHub\WSKCBSGen\WSK";
@@ -129,6 +129,8 @@ namespace WSKCBSGen
                     $@"\Windows\ImageUpdate\FeatureManifest\OEM\{DeviceName}DeviceFM.xml",
                     ""
                 );
+
+                DeviceFMCbsCabinet.SetCBSFeatureInfo(FeatureManifestId, "BASE", "OEM", new List<Microsoft.Composition.Packaging.Interfaces.IPackageInfo>());
 
                 DeviceFMCbsCabinet.Validate();
 
