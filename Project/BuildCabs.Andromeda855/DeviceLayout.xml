@@ -135,7 +135,7 @@
                     <Type>{2C86E742-745E-4FDD-BFD8-B6A7AC638772}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
-                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                    <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
                     <Name>persist</Name>
@@ -143,7 +143,7 @@
                     <Type>{6C95E238-E343-4BA8-B489-8681ED22AD0B}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
-                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                    <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
                     <Name>metadata</Name>
@@ -151,7 +151,7 @@
                     <Type>{988A98C9-2910-4123-AAEC-1CF6B1BC28F9}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
-                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                    <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
                     <Name>frp</Name>
@@ -159,7 +159,7 @@
                     <Type>{91B72D4D-71E0-4CBF-9B8E-236381CFF17A}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
-                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                    <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
                     <Name>misc</Name>
@@ -167,7 +167,7 @@
                     <Type>{82ACC91F-357C-4A68-9C8F-689E1B1A23A1}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
-                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                    <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
                     <Name>userdata</Name>
@@ -175,7 +175,7 @@
                     <Type>{1B81E7E6-F50D-419B-A739-2AEEF8DA3335}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
-                    <SingleSectorAlignment>true</SingleSectorAlignment>
+                    <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
                     <Name>BS_EFIESP</Name>
