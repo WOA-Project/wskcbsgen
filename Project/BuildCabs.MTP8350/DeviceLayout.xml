@@ -170,33 +170,41 @@
                     <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
-                    <Name>system_a</Name>
-                    <TotalSectors>786432</TotalSectors>
-                    <Type>{97D7B011-54DA-4835-B3C4-917AD6E73D74}</Type>
+                    <Name>recovery_a</Name>
+                    <TotalSectors>30720</TotalSectors>
+                    <Type>{D504D6DB-FA92-4853-B59E-C7F292E2EA19}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
                     <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
-                    <Name>system_b</Name>
-                    <TotalSectors>786432</TotalSectors>
-                    <Type>{77036CD4-03D5-42BB-8ED1-37E5A88BAA34}</Type>
+                    <Name>recovery_b</Name>
+                    <TotalSectors>30720</TotalSectors>
+                    <Type>{352B8083-9C0C-4BED-9917-CB5EABD64D41}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
                     <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
-                    <Name>vm-system_a</Name>
-                    <TotalSectors>32768</TotalSectors>
-                    <Type>{C5F681CC-9742-4641-BE4E-976EEB638EEE}</Type>
+                    <Name>super</Name>
+                    <TotalSectors>1572864</TotalSectors>
+                    <Type>{89A12DE1-5E41-4CB3-8B4C-B1441EB5DA38}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
                     <ByteAlignment>1</ByteAlignment>
                 </Partition>
                 <Partition>
-                    <Name>vm-system_b</Name>
-                    <TotalSectors>32768</TotalSectors>
-                    <Type>{77036CD4-03D5-42BB-8ED1-37E5A88BAA34}</Type>
+                    <Name>vbmeta_system_a</Name>
+                    <TotalSectors>16</TotalSectors>
+                    <Type>{1344859D-3A6A-4C14-A316-9E696B3A5400}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
+                <Partition>
+                    <Name>vbmeta_system_b</Name>
+                    <TotalSectors>16</TotalSectors>
+                    <Type>{FE3AB853-5B66-4D4A-BF85-8D90AF1C2C4A}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
                     <ByteAlignment>1</ByteAlignment>
@@ -211,7 +219,7 @@
                 </Partition>
                 <Partition>
                     <Name>rawdump</Name>
-                    <TotalSectors>32768</TotalSectors>
+                    <TotalSectors>521928</TotalSectors>
                     <Type>{66C9B323-F7FC-48B6-BF96-6F32E335A428}</Type>
                     <RequiredToFlash>true</RequiredToFlash>
                     <Backup>NotRequired</Backup>
