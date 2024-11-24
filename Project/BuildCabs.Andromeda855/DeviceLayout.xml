@@ -7,7 +7,7 @@
                 <Store>
                     <Id>{619b6838-1dca-4904-83ad-d5d0bea0aa4a}</Id>
                     <StoreType>EFIESPDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <!-- EFI System Partition -->
                         <Partition>
@@ -22,7 +22,7 @@
                 <Store>
                     <Id>{AE420040-13DD-41F2-AE7F-0DC35854C8D7}</Id>
                     <StoreType>MainOSDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>MainOS</Name>
@@ -41,7 +41,7 @@
                 <Store>
                     <Id>{B59E0F00-C531-42AE-9223-7B1DF438A46C}</Id>
                     <StoreType>BSPDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>BSP</Name>
@@ -58,7 +58,7 @@
                 <Store>
                     <Id>{6ee30957-92a8-49c4-b02f-6eacecdc90d4}</Id>
                     <StoreType>PreInstalledDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>PreInstalled</Name>
@@ -74,7 +74,7 @@
                 <Store>
                     <Id>{913bbeb3-2331-43d7-a53a-8d6e1eaf5f4e}</Id>
                     <StoreType>OSDataDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>OSData</Name>
@@ -90,7 +90,7 @@
                 <Store>
                     <Id>{67fc64f6-ec25-4071-9b1b-7e6eb9bcc9ef}</Id>
                     <StoreType>DataDisk</StoreType>
-                    <SizeInSectors>27276288</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>Data</Name>
@@ -127,7 +127,7 @@
             <Id>{5a585bae-900b-41b5-b736-a4cecffc34b4}</Id>
             <StoreType>Default</StoreType>
             <DevicePath>VenHw(860845C1-BE09-4355-8BC1-30D64FF8E63A)</DevicePath>
-            <SizeInSectors>27276288</SizeInSectors>
+            <SizeInSectors>13107200</SizeInSectors>
             <Partitions>
                 <Partition>
                     <Name>ssd</Name>

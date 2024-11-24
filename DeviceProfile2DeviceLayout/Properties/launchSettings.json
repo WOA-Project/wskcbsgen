@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DeviceProfile2DeviceLayout": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\gus33\\Documents\\GitHub\\WOA-Project\\Tools\\FirmwareGen\\FirmwareGen\\DeviceProfiles\\ZetaMaximizedForWindows.xml\""
+    }
+  }
+}

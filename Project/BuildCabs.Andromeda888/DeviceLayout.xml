@@ -7,7 +7,7 @@
                 <Store>
                     <Id>{619b6838-1dca-4904-83ad-d5d0bea0aa4a}</Id>
                     <StoreType>EFIESPDisk</StoreType>
-                    <SizeInSectors>7633920</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <!-- EFI System Partition -->
                         <Partition>
@@ -22,7 +22,7 @@
                 <Store>
                     <Id>{AE420040-13DD-41F2-AE7F-0DC35854C8D7}</Id>
                     <StoreType>MainOSDisk</StoreType>
-                    <SizeInSectors>7633920</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>MainOS</Name>
@@ -41,7 +41,7 @@
                 <Store>
                     <Id>{B59E0F00-C531-42AE-9223-7B1DF438A46C}</Id>
                     <StoreType>BSPDisk</StoreType>
-                    <SizeInSectors>7633920</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>BSP</Name>
@@ -58,7 +58,7 @@
                 <Store>
                     <Id>{6ee30957-92a8-49c4-b02f-6eacecdc90d4}</Id>
                     <StoreType>PreInstalledDisk</StoreType>
-                    <SizeInSectors>7633920</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>PreInstalled</Name>
@@ -74,7 +74,7 @@
                 <Store>
                     <Id>{913bbeb3-2331-43d7-a53a-8d6e1eaf5f4e}</Id>
                     <StoreType>OSDataDisk</StoreType>
-                    <SizeInSectors>7633920</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>OSData</Name>
@@ -90,14 +90,14 @@
                 <Store>
                     <Id>{67fc64f6-ec25-4071-9b1b-7e6eb9bcc9ef}</Id>
                     <StoreType>DataDisk</StoreType>
-                    <SizeInSectors>7633920</SizeInSectors>
+                    <SizeInSectors>13107200</SizeInSectors>
                     <Partitions>
                         <Partition>
                             <Name>Data</Name>
                             <Type>{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}</Type>
-                            <TotalSectors>5242880</TotalSectors>
+                            <TotalSectors>10485600</TotalSectors>
                             <ByteAlignment>0x100000</ByteAlignment>
-                            <ClusterSize>0x4000</ClusterSize>
+                            <ClusterSize>0x1000</ClusterSize>
                             <FileSystem>NTFS</FileSystem>
                             <UseAllSpace>true</UseAllSpace>
                         </Partition>
@@ -127,8 +127,72 @@
             <Id>{5a585bae-900b-41b5-b736-a4cecffc34b4}</Id>
             <StoreType>Default</StoreType>
             <DevicePath>VenHw(860845C1-BE09-4355-8BC1-30D64FF8E63A)</DevicePath>
-            <SizeInSectors>7633920</SizeInSectors>
+            <SizeInSectors>13107200</SizeInSectors>
             <Partitions>
+                <Partition>
+                    <Name>ssd</Name>
+                    <TotalSectors>2</TotalSectors>
+                    <Type>{2C86E742-745E-4FDD-BFD8-B6A7AC638772}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
+                <Partition>
+                    <Name>persist</Name>
+                    <TotalSectors>8192</TotalSectors>
+                    <Type>{6C95E238-E343-4BA8-B489-8681ED22AD0B}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
+                <Partition>
+                    <Name>metadata</Name>
+                    <TotalSectors>4096</TotalSectors>
+                    <Type>{988A98C9-2910-4123-AAEC-1CF6B1BC28F9}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
+                <Partition>
+                    <Name>frp</Name>
+                    <TotalSectors>128</TotalSectors>
+                    <Type>{91B72D4D-71E0-4CBF-9B8E-236381CFF17A}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
+                <Partition>
+                    <Name>misc</Name>
+                    <TotalSectors>256</TotalSectors>
+                    <Type>{82ACC91F-357C-4A68-9C8F-689E1B1A23A1}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
+                <Partition>
+                    <Name>rawdump</Name>
+                    <TotalSectors>76800</TotalSectors>
+                    <Type>{66C9B323-F7FC-48B6-BF96-6F32E335A428}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
+                <Partition>
+                    <Name>vm-data</Name>
+                    <TotalSectors>8356</TotalSectors>
+                    <Type>{21ADB864-C9E7-4C76-BE68-568E20C58439}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
+                <Partition>
+                    <Name>userdata</Name>
+                    <TotalSectors>1048576</TotalSectors>
+                    <Type>{1B81E7E6-F50D-419B-A739-2AEEF8DA3335}</Type>
+                    <RequiredToFlash>true</RequiredToFlash>
+                    <Backup>NotRequired</Backup>
+                    <ByteAlignment>1</ByteAlignment>
+                </Partition>
                 <Partition>
                     <Name>BS_EFIESP</Name>
                     <Id>{AA16C266-5F58-4CF8-829F-C323CBE22AE6}</Id>
